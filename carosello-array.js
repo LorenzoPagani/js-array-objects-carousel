@@ -27,8 +27,9 @@ const images = [
 ]
 const fwdBtn = document.getElementById('fwd-btn')
 const rwdBtn = document.getElementById('rwd-btn')
-/* crea un array di cards */
+
 const imageContainer = document.getElementById('img-container')
+const thumbContainer = document.getElementById('thumbnails-container')
 images.forEach((element, index) => {
   imageContainer.innerHTML += `
       <div class="img-card d-none">
@@ -37,36 +38,46 @@ images.forEach((element, index) => {
         <p class="description">${element.text}</p>
       </div>`
 })
+const thumbArray = images.map(element => {
+  const img= document.createElement("img");
+  img.classList.add("thumb-pic")
+  img.src = element.image 
+  thumbContainer.appendChild(img)
+});
 
+const thumbCards = document.querySelectorAll('.thumb-pic')
 const imgCards = document.querySelectorAll('.img-card')
 let currentImg = 0
 imgCards[currentImg].classList.remove('d-none')
-/* gestisci il click */
-
-/* 
-
-images[currentImg].classList.add("d-inline-block");
-thumbImages[currentImg].classList.add("active-thumb") */
+thumbCards[currentImg].classList.add("active-thumb")
 
 clickNxt = fwdBtn.addEventListener('click', function () {
   if (currentImg == imgCards.length - 1) {
     imgCards[currentImg].classList.add('d-none')
+    thumbCards[currentImg].classList.remove('active-thumb')
     currentImg = 0
     imgCards[currentImg].classList.remove('d-none')
+    thumbCards[currentImg].classList.add('active-thumb')
   } else if (currentImg < imgCards.length - 1) {
     imgCards[currentImg].classList.add('d-none')
+    thumbCards[currentImg].classList.remove('active-thumb')
     currentImg++
     imgCards[currentImg].classList.remove('d-none')
+    thumbCards[currentImg].classList.add('active-thumb')
   }
 })
 clickRwd = rwdBtn.addEventListener('click', function () {
   if (currentImg == 0) {
     imgCards[currentImg].classList.add('d-none')
+    thumbCards[currentImg].classList.remove('active-thumb')
     currentImg = images.length - 1
     imgCards[currentImg].classList.remove('d-none')
+    thumbCards[currentImg].classList.add('active-thumb')
   } else if (currentImg > 0) {
     imgCards[currentImg].classList.add('d-none')
+    thumbCards[currentImg].classList.remove('active-thumb')
     currentImg--
     imgCards[currentImg].classList.remove('d-none')
+    thumbCards[currentImg].classList.add('active-thumb')
   }
 })

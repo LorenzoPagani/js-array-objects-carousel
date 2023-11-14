@@ -1,19 +1,44 @@
 
-.container {
-    position: relative;
+
+#button-panel {
+    position: absolute;
+    left: 30%;
+    top: 95%;
+    transform: translate(-0%, -0%);
 }
+
 .photo {
     width: 100%;
     height: 400px;
     object-fit: cover;
     object-position: center;
+    position: relative;
 }
-#img-container {
+
+
+.container {
     padding-top: 5vh;
 }
 
 .description,
 .title {
-    color: green;
     text-align: end;
+}
+
+#thumbnails-container {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.thumb-pic {
+    height: 20%;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.active-thumb {
+    border: 1px solid greenyellow;
+    filter: brightness(100%);
 }
